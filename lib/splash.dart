@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'home_page.dart';
 import 'data_storage.dart';
 
 class Splash extends StatefulWidget {
@@ -10,22 +13,41 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   @override
+  void initState() {
+    super.initState();
+
+    onLoad();
+  }
+
+  Future<Timer> onLoad() async{
+    return new Timer(Duration(seconds: 3), onLoadDone);
+  }
+
+  void onLoadDone(){
+    Navigator.of(context).push(
+        MaterialPageRoute(
+            builder: (context) => HomePage()
+        )
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: DataStorage.bg_Color,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              "Text 1"
-            ),
-          ],
-        ),
-      ),
+    return GestureDetector(
+      child: Scaffold(
+          backgroundColor: DataStorage.bg_Color,
+
+          body: Container(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset("assets/mariodummy.png")
+                ],
+              ),
+            )
+          ),
+      )
     );
   }
 }
