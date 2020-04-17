@@ -24,7 +24,7 @@ class _SplashState extends State<Splash> {
   }
 
   void onLoadDone(){
-    Navigator.of(context).push(
+    Navigator.of(context).pushReplacement(
         MaterialPageRoute(
             builder: (context) => HomePage()
         )
@@ -36,7 +36,6 @@ class _SplashState extends State<Splash> {
     return GestureDetector(
       child: Scaffold(
           backgroundColor: DataStorage.bg_Color,
-
           body: Container(
             child: Center(
               child: Column(
