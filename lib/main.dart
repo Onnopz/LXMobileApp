@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'splash.dart';
+import 'package:lx_mobile_app/find_direction.dart';
+import 'package:lx_mobile_app/splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,3 +14,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// splash is the real home page

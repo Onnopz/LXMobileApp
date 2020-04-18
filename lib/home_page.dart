@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lx_mobile_app/find_direction.dart';
 import 'data_storage.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,29 +14,28 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: DataStorage.bg_Color,
-        body: Container(
-            decoration: BoxDecoration(
-
-            ),
-
-            margin: EdgeInsets.fromLTRB(
-                0,
-                DataStorage.mainMargin_TB,
-                0,
-                DataStorage.mainMargin_TB
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    CustomHeaderText("What do you want to do?"),
-                    CustomButton("Find direction", (){print("Button pressed");}),
-                  ],
-                )
-              ],
-            ),
-        )
-    );
+        body: CustomMainContainer(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  CustomText("What do you want to do?", 0, 20, 0, 40,
+                      DataStorage.textSize_head),
+                  CustomButton(
+                      "Find direction",
+                      DataStorage.textSize_mainButton,
+                      DataStorage.buttonMainLR,
+                      DataStorage.buttonMainTB,
+                      () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => FindDirection()));
+                      }
+                  ),
+                ],
+              )
+            ],
+          ),
+        ));
   }
 }
