@@ -3,34 +3,34 @@ import 'package:flutter/material.dart';
 
 class DataStorage {
   // Color
-  static final Color bg_Color = Color.fromARGB(255, 252, 181, 134);
-  static final Color button_Color = Color.fromARGB(255, 244, 120, 54);
-  static final Color buttonText_Color = Color.fromARGB(255, 250, 250, 250);
-  static final Color text_Color = Color.fromARGB(255, 112, 112, 112);
+  static const Color bg_Color = Color.fromARGB(255, 252, 181, 134);
+  static const Color button_Color = Color.fromARGB(255, 244, 120, 54);
+  static const Color buttonText_Color = Color.fromARGB(255, 250, 250, 250);
+  static const Color text_Color = Color.fromARGB(255, 112, 112, 112);
 
   //  margin
-  static final double mainMargin_LR = 15.0;
-  static final double mainMargin_TB = 50.0;
+  static const double mainMargin_LR = 15.0;
+  static const double mainMargin_TB = 50.0;
 
-  static final double widgetMargin_head = 40.0;
-  static final double widgetMargin_secondHeader = 15.0;
+  static const double widgetMargin_head = 40.0;
+  static const double widgetMargin_secondHeader = 15.0;
 
   // text size
-  static final double textSize_head = 25.0;
-  static final double textSize_secondHead = 20.0;
-  static final double textSize_body = 15.0;
+  static const double textSize_head = 25.0;
+  static const double textSize_secondHead = 20.0;
+  static const double textSize_body = 15.0;
 
-  static final double textSize_mainButton = 20.0;
-  static final double textSize_smallButton = 15.0;
+  static const double textSize_mainButton = 20.0;
+  static const double textSize_smallButton = 15.0;
 
-  static final double widgetMargin_bodyText = 10.0;
+  static const double widgetMargin_bodyText = 10.0;
 
   // button info
-  static final double buttonMainTB = 15.0;
-  static final double buttonMainLR = 40.0;
+  static const double buttonMainTB = 15.0;
+  static const double buttonMainLR = 40.0;
 
-  static final double buttonSmallTB = 5.0;
-  static final double buttonSmallLR = 15.0;
+  static const double buttonSmallTB = 5.0;
+  static const double buttonSmallLR = 15.0;
 }
 
 class CustomButton extends RaisedButton {
@@ -129,6 +129,7 @@ class CustomBodyContainer extends Container {
               ],
             ));
 }
+
 class HorizontalLine extends Container{
   HorizontalLine() : super(
     color: DataStorage.text_Color,
@@ -158,4 +159,17 @@ class CustomBackButton extends FlatButton {
                 ),
               ],
             ));
+}
+
+class LocationStorage{
+  static var origin = -1;
+  static var target = -1;
+
+  static const List<String> locationName = [
+    "Location 0",
+    "Location 1",
+    "Location 2",
+    "Location 3",
+    "Location 4"
+  ];
 }
