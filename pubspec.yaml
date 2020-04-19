@@ -46,6 +46,23 @@ flutter:
   assets:
     - assets/mariodummy.png
     - assets/arrowdown.png
+    - assets/loc0.jpg
+    - assets/loc1.jpg
+    - assets/loc2.jpg
+    - assets/loc3.jpg
+    - assets/loc4.jpg
+    - assets/loc5.jpg
+    - assets/loc6.jpg
+    - assets/loc7.jpg
+    - assets/loc8.jpg
+    - assets/loc9.jpg
+    - assets/loc10.jpg
+    - assets/loc11.jpg
+    - assets/loc12.jpg
+    - assets/loc13.jpg
+    - assets/loc14.jpg
+
+
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 

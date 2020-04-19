@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/find_direction.dart';
 import 'package:lx_mobile_app/splash.dart';
 
 void main() => runApp(MyApp());

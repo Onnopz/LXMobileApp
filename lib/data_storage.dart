@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lx_mobile_app/find_direction.dart';
 import 'package:lx_mobile_app/home_page.dart';
-import 'package:lx_mobile_app/splash.dart';
 
 class DataStorage {
   // Color
@@ -13,7 +12,7 @@ class DataStorage {
 
   //  margin
   static const double mainMargin_LR = 15.0;
-  static const double mainMargin_TB = 50.0;
+  static const double mainMargin_TB = 30.0;
 
   static const double widgetMargin_head = 40.0;
   static const double widgetMargin_secondHeader = 15.0;
@@ -126,8 +125,9 @@ class CustomBodyContainer extends Container {
                 DataStorage.mainMargin_LR,
                 DataStorage.mainMargin_TB,
                 DataStorage.mainMargin_LR,
-                DataStorage.mainMargin_TB),
-            child: Column(
+                0
+            ),
+            child: ListView(
               children: <Widget>[
                 // This row is for BACK Button
                 Row(
@@ -147,6 +147,8 @@ class CustomBodyContainer extends Container {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+
+
                       Column(
                         children: children,
                       ),
@@ -196,6 +198,16 @@ class LocationStorage {
     "Location 1",
     "Location 2",
     "Location 3",
-    "Location 4"
+    "Location 4",
+    "Location 5",
+    "Location 6",
+    "Location 7",
+    "Location 8",
+    "Location 9",
+    "Location 10",
+    "Location 11",
+    "Location 12",
+    "Location 13",
+    "Location 14",
   ];
 }
