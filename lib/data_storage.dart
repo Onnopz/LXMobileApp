@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lx_mobile_app/find_direction.dart';
+import 'package:lx_mobile_app/home_page.dart';
+import 'package:lx_mobile_app/splash.dart';
 
 class DataStorage {
   // Color
@@ -34,7 +37,8 @@ class DataStorage {
 }
 
 class CustomButton extends RaisedButton {
-  CustomButton(String text, double textSize, double padding_LR, double padding_TB, Function func)
+  CustomButton(String text, double textSize, double padding_LR,
+      double padding_TB, Function func)
       : super(
             child: Text(
               text,
@@ -44,18 +48,15 @@ class CustomButton extends RaisedButton {
             color: DataStorage.button_Color,
             textColor: DataStorage.buttonText_Color,
             padding: EdgeInsets.fromLTRB(
-                padding_LR,
-                padding_TB,
-                padding_LR,
-                padding_TB
-            ),
+                padding_LR, padding_TB, padding_LR, padding_TB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ));
 }
 
 class CustomText extends Container {
-  CustomText(String text, double left, double top, double right, double bottom, double size)
+  CustomText(String text, double left, double top, double right, double bottom,
+      double size)
       : super(
           margin: EdgeInsets.fromLTRB(left, top, right, bottom),
           child: Text(
@@ -66,6 +67,30 @@ class CustomText extends Container {
             ),
           ),
         );
+}
+
+class CustomNavigationBar extends BottomNavigationBar {
+  static final List<Widget> page = [
+    HomePage(),
+    FindDirection(),
+  ];
+
+  CustomNavigationBar(Function func, int selected)
+      : super(
+          currentIndex: selected,
+          selectedItemColor: DataStorage.button_Color,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text("Home"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text("Home"),
+            ),
+          ],
+          onTap: func,
+      );
 }
 
 class CustomBodyText extends Container {
@@ -130,12 +155,13 @@ class CustomBodyContainer extends Container {
             ));
 }
 
-class HorizontalLine extends Container{
-  HorizontalLine() : super(
-    color: DataStorage.text_Color,
-    height: 2,
-    width: 250,
-  );
+class HorizontalLine extends Container {
+  HorizontalLine()
+      : super(
+          color: DataStorage.text_Color,
+          height: 2,
+          width: 250,
+        );
 }
 
 class CustomBackButton extends FlatButton {
@@ -161,7 +187,7 @@ class CustomBackButton extends FlatButton {
             ));
 }
 
-class LocationStorage{
+class LocationStorage {
   static var origin = -1;
   static var target = -1;
 

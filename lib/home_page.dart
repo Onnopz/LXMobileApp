@@ -10,32 +10,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static final pageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: DataStorage.bg_Color,
-        body: CustomMainContainer(
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  CustomText("What do you want to do?", 0, 20, 0, 40,
-                      DataStorage.textSize_head),
-                  CustomButton(
-                      "Find direction",
-                      DataStorage.textSize_mainButton,
-                      DataStorage.buttonMainLR,
-                      DataStorage.buttonMainTB,
-                      () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => FindDirection()));
-                      }
-                  ),
-                ],
-              )
-            ],
-          ),
-        ));
+      backgroundColor: DataStorage.bg_Color,
+      body: CustomMainContainer(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                CustomText("What do you want to do?", 0, 20, 0, 40,
+                    DataStorage.textSize_head),
+                CustomButton("Find direction", DataStorage.textSize_mainButton,
+                    DataStorage.buttonMainLR, DataStorage.buttonMainTB, () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => FindDirection()));
+                }),
+              ],
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: CustomNavigationBar((int i) {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => CustomNavigationBar.page[i]));
+      }, pageIndex),
+    );
   }
 }

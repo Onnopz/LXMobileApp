@@ -10,18 +10,10 @@ class FindDirection extends StatefulWidget {
 }
 
 class _FindDirectionState extends State<FindDirection> {
-  Column originCol = Column(
-    children: <Widget>[
-      CustomText("Scan QR in your area for starting location", 0, 0, 0, 18,
-          DataStorage.textSize_body),
-    ],
-  );
-  Column targetCol = Column(
-    children: <Widget>[
-      CustomText("Scan QR in your area for starting location", 0, 0, 0, 18,
-          DataStorage.textSize_body),
-    ],
-  );
+  static final pageIndex = 1;
+
+  Column originCol;
+  Column targetCol;
 
   @override
   void initState() {
@@ -30,14 +22,13 @@ class _FindDirectionState extends State<FindDirection> {
     super.initState();
 
     setState(() {
-
       print("Set state is called ${LocationStorage.origin}");
 
       if (LocationStorage.origin < 0) {
         originCol = Column(
           children: <Widget>[
-            CustomText("Scan QR in your area for starting location", 0, 0, 0, 18,
-                DataStorage.textSize_body),
+            CustomText("Scan QR in your area for starting location", 0, 0, 0,
+                18, DataStorage.textSize_body),
           ],
         );
       } else {
@@ -45,8 +36,8 @@ class _FindDirectionState extends State<FindDirection> {
         setState(() {
           originCol = Column(
             children: <Widget>[
-              CustomText(LocationStorage.locationName[LocationStorage.origin], 0, 0,
-                  0, 18, DataStorage.textSize_body),
+              CustomText(LocationStorage.locationName[LocationStorage.origin],
+                  0, 0, 0, 18, DataStorage.textSize_body),
             ],
           );
         });
@@ -62,20 +53,17 @@ class _FindDirectionState extends State<FindDirection> {
             ],
           );
         });
-
       } else {
         setState(() {
           originCol = Column(
             children: <Widget>[
-              CustomText(LocationStorage.locationName[LocationStorage.target], 0, 0,
-                  0, 18, DataStorage.textSize_body),
+              CustomText(LocationStorage.locationName[LocationStorage.target],
+                  0, 0, 0, 18, DataStorage.textSize_body),
             ],
           );
         });
-
       }
     });
-
   }
 
   void onScanDone(int origin) {
@@ -145,6 +133,13 @@ class _FindDirectionState extends State<FindDirection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomNavigationBar(
+          (int i) {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => CustomNavigationBar.page[i]));
+          },
+          pageIndex
+      ),
       backgroundColor: DataStorage.bg_Color,
       body: CustomBodyContainer(<Widget>[
         CustomText("Find direction", 0, 0, 0, 20, DataStorage.textSize_head),
@@ -155,8 +150,7 @@ class _FindDirectionState extends State<FindDirection> {
                 DataStorage.textSize_secondHead),
             originCol,
             CustomButton("Scan QR", DataStorage.textSize_smallButton,
-                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, scanQR
-            ),
+                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, scanQR),
           ],
         ),
         SizedBox(
