@@ -84,8 +84,8 @@ class CustomNavigationBar extends BottomNavigationBar {
               title: Text("Home"),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text("Home"),
+              icon: Icon(Icons.map),
+              title: Text("Navigator"),
             ),
           ],
           onTap: func,
@@ -127,7 +127,7 @@ class CustomBodyContainer extends Container {
                 DataStorage.mainMargin_LR,
                 0
             ),
-            child: ListView(
+            child: Column(
               children: <Widget>[
                 // This row is for BACK Button
                 Row(
@@ -144,15 +144,16 @@ class CustomBodyContainer extends Container {
                   ],
                 ),
 
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
+              Expanded(
+                  child: ListView(
+                      children: <Widget>[
+                          Column(
+                            children: children,
+                          )
+                      ]
+                    ),
+               ),
 
-
-                      Column(
-                        children: children,
-                      ),
-                    ])
               ],
             ));
 }

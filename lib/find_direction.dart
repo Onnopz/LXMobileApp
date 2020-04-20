@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lx_mobile_app/choose_location.dart';
 import 'data_storage.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 
@@ -139,67 +140,52 @@ class _FindDirectionState extends State<FindDirection> {
             builder: (context) => CustomNavigationBar.page[i]));
       }, pageIndex),
       backgroundColor: DataStorage.bg_Color,
-      body: CustomBodyContainer(
-            <Widget>[
-              CustomText("Find direction", 0, 0, 0, 20, DataStorage.textSize_head),
-              HorizontalLine(),
-              Column(
-              children: <Widget>[
-                CustomText("Your starting location", 0, 20, 0, 20,
-                    DataStorage.textSize_secondHead),
-                originCol,
-                CustomButton("Scan QR", DataStorage.textSize_smallButton,
-                    DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, scanQR),
-              ],
-               ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Image.asset(
-                "assets/arrowdown.png",
-                scale: 2,
-              ),
+      body: CustomBodyContainer(<Widget>[
+        CustomText("Find direction", 0, 0, 0, 20, DataStorage.textSize_head),
 
-          Column(
-            children: <Widget>[
-              CustomText("To your destination", 0, 18, 0, 20,
-                  DataStorage.textSize_secondHead),
-              targetCol,
-              CustomButton("Choose location", DataStorage.textSize_smallButton,
-                  DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                    print("Go to choose location");
-                  }
-              ),
-              CustomButton("Choose location", DataStorage.textSize_smallButton,
-                  DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                    print("Go to choose location");
-                  }
-              ),
-              CustomButton("Choose location", DataStorage.textSize_smallButton,
-                  DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                    print("Go to choose location");
-                  }
-              ),
-              CustomButton("Choose location", DataStorage.textSize_smallButton,
-                  DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                    print("Go to choose location");
-                  }
-              ),
-              CustomButton("Choose location", DataStorage.textSize_smallButton,
-                  DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                    print("Go to choose location");
-                  }
-              ),
-              CustomButton("Choose location", DataStorage.textSize_smallButton,
-                  DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                    print("Go to choose location");
-                  }
-              ),
-            ],
-          ),
+        HorizontalLine(),
 
-        ], context
-      ),
+        Column(
+          children: <Widget>[
+            CustomText("Your starting location", 0, 20, 0, 20,
+                DataStorage.textSize_secondHead),
+
+            originCol,
+
+            CustomButton("Scan QR", DataStorage.textSize_smallButton,
+                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, scanQR),
+          ],
+        ),
+
+        SizedBox(
+          height: 10.0,
+        ),
+
+        Image.asset(
+          "assets/arrowdown.png",
+          scale: 2,
+        ),
+
+        Column(
+          children: <Widget>[
+            CustomText("To your destination", 0, 18, 0, 20,
+                DataStorage.textSize_secondHead),
+
+            targetCol,
+
+            CustomButton("Choose location", DataStorage.textSize_smallButton,
+                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
+                  Navigator.push(context,
+                    MaterialPageRoute(
+                        builder: (context) => ChooseLo()
+                    )
+                  );
+                }
+            ),
+
+          ],
+        ),
+      ], context),
     );
   }
 }

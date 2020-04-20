@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/find_direction.dart';
 import 'home_page.dart';
 import 'data_storage.dart';
 
@@ -42,7 +41,9 @@ class _SplashState extends State<Splash> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset("assets/mariodummy.png")
+                  Image.asset("assets/applogo.jpg",
+                  scale: 10,
+                  )
                 ],
               ),
             )

@@ -35,9 +35,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: CustomNavigationBar((int i) {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => CustomNavigationBar.page[i]));
-      }, pageIndex),
+        if(i != pageIndex){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => CustomNavigationBar.page[i]));
+        }
+      },
+        pageIndex),
     );
   }
 }
