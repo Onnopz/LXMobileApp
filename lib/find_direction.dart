@@ -136,9 +136,12 @@ class _FindDirectionState extends State<FindDirection> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomNavigationBar((int i) {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => CustomNavigationBar.page[i]));
-      }, pageIndex),
+        if(i != pageIndex){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => CustomNavigationBar.page[i]));
+        }
+      },
+          pageIndex),
       backgroundColor: DataStorage.bg_Color,
       body: CustomBodyContainer(<Widget>[
         CustomText("Find direction", 0, 0, 0, 20, DataStorage.textSize_head),
@@ -181,8 +184,49 @@ class _FindDirectionState extends State<FindDirection> {
                     )
                   );
                 }
+
             ),
 
+            CustomButton("Choose location", DataStorage.textSize_smallButton,
+                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => ChooseLo()
+                      )
+                  );
+                }
+
+            ),
+            CustomButton("Choose location", DataStorage.textSize_smallButton,
+                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => ChooseLo()
+                      )
+                  );
+                }
+
+            ),
+            CustomButton("Choose location", DataStorage.textSize_smallButton,
+                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => ChooseLo()
+                      )
+                  );
+                }
+
+            ),
+            CustomButton("Choose location", DataStorage.textSize_smallButton,
+                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => ChooseLo()
+                      )
+                  );
+                }
+
+            ),
           ],
         ),
       ], context),

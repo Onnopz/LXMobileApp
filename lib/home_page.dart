@@ -15,6 +15,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomNavigationBar((int i) {
+        if(i != pageIndex){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => CustomNavigationBar.page[i]));
+        }
+      },
+          pageIndex),
       backgroundColor: DataStorage.bg_Color,
       body: CustomMainContainer(
         Row(
@@ -34,13 +41,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomNavigationBar((int i) {
-        if(i != pageIndex){
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => CustomNavigationBar.page[i]));
-        }
-      },
-        pageIndex),
+
     );
   }
 }

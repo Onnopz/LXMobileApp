@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/find_direction.dart';
 import 'data_storage.dart';
 
 class ChooseLo extends StatefulWidget {
@@ -15,6 +14,14 @@ class _ChooseLoState extends State<ChooseLo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomNavigationBar((int i) {
+        if(i != pageIndex){
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => CustomNavigationBar.page[i]));
+        }
+      },
+        pageIndex
+      ),
       backgroundColor: DataStorage.bg_Color,
       body: CustomBodyContainer(
         <Widget>[
@@ -23,16 +30,11 @@ class _ChooseLoState extends State<ChooseLo> {
             0, 0, 0, 20,
             DataStorage.textSize_secondHead
           ),
-
+          
 
         ],
           context
       ),
-
-      bottomNavigationBar: CustomNavigationBar((int i) {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => CustomNavigationBar.page[i]));
-      }, pageIndex),
     );
   }
 }
