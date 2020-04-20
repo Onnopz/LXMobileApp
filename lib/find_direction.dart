@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lx_mobile_app/choose_location.dart';
+import 'package:lx_mobile_app/show_direction.dart';
 import 'data_storage.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 
@@ -15,15 +16,19 @@ class _FindDirectionState extends State<FindDirection> {
   Column originCol;
   Column targetCol;
 
-  CustomButton goButton;
+  static bool buttonReady;
 
+  void checkForButton(){
+    setState(() {
+      buttonReady = LocationStorage.origin >= 0 && LocationStorage.target >= 0;
+    });
+  }
+
+  // InitState
   @override
   void initState() {
-
     print("Initstate is called: ${LocationStorage.origin}");
-
     super.initState();
-
     setState(() {
       print("Set state is called ${LocationStorage.origin}");
 
@@ -35,7 +40,6 @@ class _FindDirectionState extends State<FindDirection> {
           ],
         );
       } else {
-        print("This is met");
         setState(() {
           originCol = Column(
             children: <Widget>[
@@ -43,7 +47,9 @@ class _FindDirectionState extends State<FindDirection> {
                 "assets/loc${LocationStorage.origin}.jpg",
                 scale: 20,
               ),
-              SizedBox(height: 20.0,),
+              SizedBox(
+                height: 15.0,
+              ),
               CustomText(LocationStorage.locationName[LocationStorage.origin],
                   0, 0, 0, 18, DataStorage.textSize_body),
             ],
@@ -69,13 +75,17 @@ class _FindDirectionState extends State<FindDirection> {
                 "assets/loc${LocationStorage.target}.jpg",
                 scale: 20,
               ),
-              SizedBox(height: 20.0,),
+              SizedBox(
+                height: 15.0,
+              ),
               CustomText(LocationStorage.locationName[LocationStorage.target],
                   0, 0, 0, 18, DataStorage.textSize_body),
             ],
           );
         });
       }
+
+      checkForButton();
     });
   }
 
@@ -89,11 +99,15 @@ class _FindDirectionState extends State<FindDirection> {
             "assets/loc${LocationStorage.origin}.jpg",
             scale: 21,
           ),
-          SizedBox(height: 20.0,),
+          SizedBox(
+            height: 15.0,
+          ),
           CustomText(LocationStorage.locationName[LocationStorage.origin], 0, 0,
               0, 18, DataStorage.textSize_body),
         ],
       );
+
+      checkForButton();
     });
   }
 
@@ -145,76 +159,92 @@ class _FindDirectionState extends State<FindDirection> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomNavigationBar((int i) {
-        if(i != pageIndex){
+        if (i != pageIndex) {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => CustomNavigationBar.page[i]));
         }
-      },
-          pageIndex),
+      }, pageIndex),
       backgroundColor: DataStorage.bg_Color,
       body: CustomBodyContainer(<Widget>[
         CustomText("Find direction", 0, 0, 0, 20, DataStorage.textSize_head),
-
         HorizontalLine(),
-
         Column(
           children: <Widget>[
             CustomText("Your starting location", 0, 20, 0, 20,
                 DataStorage.textSize_secondHead),
-
             originCol,
-
             CustomButton("Scan QR", DataStorage.textSize_smallButton,
                 DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, scanQR),
           ],
         ),
-
         SizedBox(
           height: 10.0,
         ),
-
         Image.asset(
           "assets/arrowdown.png",
           scale: 2,
         ),
-
         Column(
           children: <Widget>[
             CustomText("To your destination", 0, 18, 0, 20,
                 DataStorage.textSize_secondHead),
-
             targetCol,
-
             CustomButton("Choose location", DataStorage.textSize_smallButton,
                 DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                  Navigator.push(context,
-                    MaterialPageRoute(
-                        builder: (context) => ChooseLo()
-                    )
-                  ).then((value){
-                    setState(() {
-                      targetCol = Column(
-                        children: <Widget>[
-                          Image.asset(
-                            "assets/loc${LocationStorage.target}.jpg",
-                            scale: 20,
-                          ),
-                          SizedBox(height: 20.0,),
-                          CustomText(LocationStorage.locationName[LocationStorage.target],
-                              0, 0, 0, 18, DataStorage.textSize_body),
-                        ],
-                      );
-                    }
-
-
-                    );
-                  });
-                }
-            ),
+              Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ChooseLo()))
+                  .then((value) {
+                setState(() {
+                  targetCol = Column(
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/loc${LocationStorage.target}.jpg",
+                        scale: 20,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      CustomText(
+                          LocationStorage.locationName[LocationStorage.target],
+                          0, 0, 0, 18,
+                          DataStorage.textSize_body),
+                    ],
+                  );
+                  checkForButton();
+                });
+              });
+            }),
           ],
         ),
+        SizedBox(height: 10.0),
 
-
+        Visibility(
+          visible: buttonReady,
+          child: Column(
+            children: <Widget>[
+              HorizontalLine(),
+              SizedBox(height: 10.0,),
+              RaisedButton(
+                  child: Text(
+                    "Get direction",
+                    style: TextStyle(fontSize: DataStorage.textSize_mainButton),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ShowDirection()));
+                  },
+                  color: DataStorage.button_Color,
+                  textColor: DataStorage.buttonText_Color,
+                  padding: EdgeInsets.fromLTRB(70.0, 10.0, 70.0, 10.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  )),
+            ],
+          ),
+        ),
+        SizedBox(height: 30.0),
       ], context),
     );
   }

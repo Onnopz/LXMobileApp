@@ -161,7 +161,8 @@ class CustomButton extends RaisedButton {
                 padding_LR, padding_TB, padding_LR, padding_TB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
-            ));
+            )
+  );
 }
 
 class CustomText extends Container {
