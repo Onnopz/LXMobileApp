@@ -41,7 +41,7 @@ class _SplashState extends State<Splash> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset("assets/applogo.jpg",
+                  Image.asset("assets/applogo.png",
                   scale: 10,
                   )
                 ],

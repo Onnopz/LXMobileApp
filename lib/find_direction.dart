@@ -12,12 +12,14 @@ class FindDirection extends StatefulWidget {
 
 class _FindDirectionState extends State<FindDirection> {
   static final pageIndex = 1;
-
   Column originCol;
   Column targetCol;
 
+  CustomButton goButton;
+
   @override
   void initState() {
+
     print("Initstate is called: ${LocationStorage.origin}");
 
     super.initState();
@@ -41,6 +43,7 @@ class _FindDirectionState extends State<FindDirection> {
                 "assets/loc${LocationStorage.origin}.jpg",
                 scale: 20,
               ),
+              SizedBox(height: 20.0,),
               CustomText(LocationStorage.locationName[LocationStorage.origin],
                   0, 0, 0, 18, DataStorage.textSize_body),
             ],
@@ -60,8 +63,13 @@ class _FindDirectionState extends State<FindDirection> {
         });
       } else {
         setState(() {
-          originCol = Column(
+          targetCol = Column(
             children: <Widget>[
+              Image.asset(
+                "assets/loc${LocationStorage.target}.jpg",
+                scale: 20,
+              ),
+              SizedBox(height: 20.0,),
               CustomText(LocationStorage.locationName[LocationStorage.target],
                   0, 0, 0, 18, DataStorage.textSize_body),
             ],
@@ -81,6 +89,7 @@ class _FindDirectionState extends State<FindDirection> {
             "assets/loc${LocationStorage.origin}.jpg",
             scale: 21,
           ),
+          SizedBox(height: 20.0,),
           CustomText(LocationStorage.locationName[LocationStorage.origin], 0, 0,
               0, 18, DataStorage.textSize_body),
         ],
@@ -182,53 +191,30 @@ class _FindDirectionState extends State<FindDirection> {
                     MaterialPageRoute(
                         builder: (context) => ChooseLo()
                     )
-                  );
+                  ).then((value){
+                    setState(() {
+                      targetCol = Column(
+                        children: <Widget>[
+                          Image.asset(
+                            "assets/loc${LocationStorage.target}.jpg",
+                            scale: 20,
+                          ),
+                          SizedBox(height: 20.0,),
+                          CustomText(LocationStorage.locationName[LocationStorage.target],
+                              0, 0, 0, 18, DataStorage.textSize_body),
+                        ],
+                      );
+                    }
+
+
+                    );
+                  });
                 }
-
-            ),
-
-            CustomButton("Choose location", DataStorage.textSize_smallButton,
-                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (context) => ChooseLo()
-                      )
-                  );
-                }
-
-            ),
-            CustomButton("Choose location", DataStorage.textSize_smallButton,
-                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (context) => ChooseLo()
-                      )
-                  );
-                }
-
-            ),
-            CustomButton("Choose location", DataStorage.textSize_smallButton,
-                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (context) => ChooseLo()
-                      )
-                  );
-                }
-
-            ),
-            CustomButton("Choose location", DataStorage.textSize_smallButton,
-                DataStorage.buttonSmallLR, DataStorage.buttonSmallTB, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (context) => ChooseLo()
-                      )
-                  );
-                }
-
             ),
           ],
         ),
+
+
       ], context),
     );
   }
