@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
         }
       },
           pageIndex),
-      backgroundColor: DataStorage.bg_Color,
+      backgroundColor: AppConstant.color_Background,
       body: CustomMainContainer(
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,17 +31,17 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: <Widget>[
                 CustomText("What do you want to do?", 0, 20, 0, 40,
-                    DataStorage.textSize_head),
-                CustomButton("Find direction", DataStorage.textSize_mainButton,
-                    DataStorage.buttonMainLR, DataStorage.buttonMainTB, () {
+                    AppConstant.textSize_head),
+                CustomButton("Find direction", AppConstant.textSize_button_main,
+                    AppConstant.padding_button_mainLR, AppConstant.padding_button_mainTB, () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => FindDirection()));
                 }),
 
                 SizedBox(height: 20.0,),
 
-                CustomButton("Map to LX", DataStorage.textSize_mainButton,
-                    DataStorage.buttonMainLR, DataStorage.buttonMainTB, () {
+                CustomButton("Map to LX", AppConstant.textSize_button_main,
+                    AppConstant.padding_button_mainLR, AppConstant.padding_button_mainTB, () {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => GMapNavigator()));
                     }),

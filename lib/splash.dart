@@ -35,7 +35,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Scaffold(
-          backgroundColor: DataStorage.bg_Color,
+          backgroundColor: AppConstant.color_Background,
           body: Container(
             child: Center(
               child: Column(

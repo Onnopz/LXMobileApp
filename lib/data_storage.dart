@@ -28,123 +28,111 @@ class LocationStorage {
   ];
 }
 
-class DataStorage {
+class AppConstant {
   // Color
-  static const Color bg_Color = Color.fromARGB(255, 252, 181, 134);
-  static const Color button_Color = Color.fromARGB(255, 244, 120, 54);
-  static const Color buttonText_Color = Color.fromARGB(255, 250, 250, 250);
-  static const Color text_Color = Color.fromARGB(255, 112, 112, 112);
+  static const Color color_Background = Color.fromARGB(255, 252, 181, 134);
+  static const Color color_Button = Color.fromARGB(255, 244, 120, 54);
+  static const Color color_ButtonText = Color.fromARGB(255, 250, 250, 250);
+  static const Color color_Text = Color.fromARGB(255, 112, 112, 112);
 
   //  margin
-  static const double mainMargin_LR = 15.0;
-  static const double mainMargin_TB = 30.0;
-
-  static const double widgetMargin_head = 40.0;
-  static const double widgetMargin_secondHeader = 15.0;
+  static const double margin_mainLR = 15.0;
+  static const double margin_mainTB = 30.0;
 
   // text size
   static const double textSize_head = 25.0;
   static const double textSize_secondHead = 20.0;
   static const double textSize_body = 15.0;
 
-  static const double textSize_mainButton = 20.0;
-  static const double textSize_smallButton = 15.0;
-
-  static const double widgetMargin_bodyText = 10.0;
+  static const double textSize_button_main = 20.0;
+  static const double textSize_button_small = 15.0;
 
   // button info
-  static const double buttonMainTB = 15.0;
-  static const double buttonMainLR = 40.0;
+  static const double padding_button_mainTB = 15.0;
+  static const double padding_button_mainLR = 40.0;
 
-  static const double buttonSmallTB = 5.0;
-  static const double buttonSmallLR = 15.0;
+  static const double padding_button_smallTB = 5.0;
+  static const double padding_button_smallLR = 15.0;
+
 }
 
 // Layout widget
 class CustomMainContainer extends Container {
   CustomMainContainer(Widget child)
       : super(
-      margin: EdgeInsets.fromLTRB(
-          DataStorage.mainMargin_LR,
-          DataStorage.mainMargin_TB,
-          DataStorage.mainMargin_LR,
-          DataStorage.mainMargin_TB),
-      child: child);
+            margin: EdgeInsets.fromLTRB(
+                AppConstant.margin_mainLR,
+                AppConstant.margin_mainTB,
+                AppConstant.margin_mainLR,
+                AppConstant.margin_mainTB),
+            child: child);
 }
 
 class CustomBodyContainer extends Container {
   CustomBodyContainer(List<Widget> children, BuildContext context)
       : super(
-      margin: EdgeInsets.fromLTRB(
-          DataStorage.mainMargin_LR,
-          DataStorage.mainMargin_TB,
-          DataStorage.mainMargin_LR,
-          0
-      ),
-      child: Column(
-        children: <Widget>[
-          // This row is for BACK Button
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  CustomBackButton(context),
-                  SizedBox(
-                    height: 10.0,
-                  )
-                ],
-              )
-            ],
-          ),
+            margin: EdgeInsets.fromLTRB(AppConstant.margin_mainLR,
+                AppConstant.margin_mainTB, AppConstant.margin_mainLR, 0),
+            child: Column(
+              children: <Widget>[
+                // This row is for BACK Button
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        CustomBackButton(context),
+                        SizedBox(
+                          height: 10.0,
+                        )
+                      ],
+                    )
+                  ],
+                ),
 
-          Expanded(
-            child: ListView(
-                children: <Widget>[
-                  Column(
-                    children: children,
-                  )
-                ]
-            ),
-          ),
-
-        ],
-      ));
+                Expanded(
+                  child: ListView(children: <Widget>[
+                    Column(
+                      children: children,
+                    )
+                  ]),
+                ),
+              ],
+            ));
 }
 
 // Constant object widget
 class HorizontalLine extends Container {
   HorizontalLine()
       : super(
-    color: DataStorage.text_Color,
-    height: 2,
-    width: 280,
-  );
+          color: AppConstant.color_Text,
+          height: 2,
+          width: 280,
+        );
 }
 
 class CustomBackButton extends FlatButton {
   CustomBackButton(BuildContext context)
       : super(
-      onPressed: () {
-        Navigator.pop(context);
-      },
-      child: Row(
-        children: <Widget>[
-          Icon(
-            Icons.arrow_back_ios,
-            color: DataStorage.text_Color,
-          ),
-          Text(
-            "Back",
-            style: TextStyle(
-              fontSize: 25.0,
-              color: DataStorage.text_Color,
-            ),
-          ),
-        ],
-      ));
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Row(
+              children: <Widget>[
+                Icon(
+                  Icons.arrow_back_ios,
+                  color: AppConstant.color_Text,
+                ),
+                Text(
+                  "Back",
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    color: AppConstant.color_Text,
+                  ),
+                ),
+              ],
+            ));
 }
-
 
 // Object widget
 class CustomButton extends RaisedButton {
@@ -156,14 +144,13 @@ class CustomButton extends RaisedButton {
               style: TextStyle(fontSize: textSize),
             ),
             onPressed: func,
-            color: DataStorage.button_Color,
-            textColor: DataStorage.buttonText_Color,
+            color: AppConstant.color_Button,
+            textColor: AppConstant.color_ButtonText,
             padding: EdgeInsets.fromLTRB(
                 padding_LR, padding_TB, padding_LR, padding_TB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
-            )
-  );
+            ));
 }
 
 class CustomText extends Container {
@@ -175,7 +162,7 @@ class CustomText extends Container {
             text,
             style: TextStyle(
               fontSize: size,
-              color: DataStorage.text_Color,
+              color: AppConstant.color_Text,
             ),
           ),
         );
@@ -191,7 +178,7 @@ class CustomNavigationBar extends BottomNavigationBar {
   CustomNavigationBar(Function func, int selected)
       : super(
           currentIndex: selected,
-          selectedItemColor: DataStorage.button_Color,
+          selectedItemColor: AppConstant.color_Button,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -207,76 +194,59 @@ class CustomNavigationBar extends BottomNavigationBar {
             ),
           ],
           onTap: func,
-      );
+        );
 }
 
-class CustomTextField extends Container{
-  CustomTextField(String hint, Function func) : super(
-    height: 55.0,
-    width: 250.0,
-    child: TextField(
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(15.0, 7.0, 15.0, 7.0),
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0))
-        ),
-        hintText: hint,
-
-        hintStyle: TextStyle(
-            color: DataStorage.text_Color,
-            fontSize: DataStorage.textSize_smallButton
-        ),
-        fillColor: Colors.white,
-        filled: true,
-      ),
-      onChanged: func,
-    ),
-
-  );
+class CustomTextField extends Container {
+  CustomTextField(String hint, Function func)
+      : super(
+          height: 55.0,
+          width: 250.0,
+          child: TextField(
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.fromLTRB(15.0, 7.0, 15.0, 7.0),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              hintText: hint,
+              hintStyle: TextStyle(
+                  color: AppConstant.color_Text,
+                  fontSize: AppConstant.textSize_button_small),
+              fillColor: Colors.white,
+              filled: true,
+            ),
+            onChanged: func,
+          ),
+        );
 }
 
-class LocationListItem extends GestureDetector{
+class LocationListItem extends GestureDetector {
   final int index;
 
-  LocationListItem(this.index, BuildContext context) :
-        super(
-          onTap: (){
-            LocationStorage.target = index;
-            Navigator.pop(context);
-          },
-
-          child: Container(
-            margin: EdgeInsets.fromLTRB(0, 10.0, 0, 10.0),
-            decoration: BoxDecoration(
-                border: Border.all(
-                    color: DataStorage.button_Color,
-                    width: 3
-                ),
-                borderRadius: BorderRadius.all(
-                    Radius.circular(5.0)
-                )
-            ),
-
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, 20.0, 20.0, 20.0),
-                  child: Image.asset(
-                    "assets/loc$index.jpg",
-                    scale: 20,
+  LocationListItem(this.index, BuildContext context)
+      : super(
+            onTap: () {
+              LocationStorage.target = index;
+              Navigator.pop(context);
+            },
+            child: Container(
+              margin: EdgeInsets.fromLTRB(0, 10.0, 0, 10.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: AppConstant.color_Button, width: 3),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 20.0, 20.0, 20.0),
+                    child: Image.asset(
+                      "assets/loc$index.jpg",
+                      scale: 20,
+                    ),
                   ),
-                ),
-                Container(
-                  child: Text(LocationStorage.locationName[index]),
-                ),
-              ],
-            ),
-          )
-      );
-
-
+                  Container(
+                    child: Text(LocationStorage.locationName[index]),
+                  ),
+                ],
+              ),
+            ));
 }
-
-
-

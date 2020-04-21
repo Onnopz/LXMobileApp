@@ -21,7 +21,7 @@ class _GMapNavigatorState extends State<GMapNavigator> {
         }
       },
           pageIndex),
-      backgroundColor: DataStorage.bg_Color,
+      backgroundColor: AppConstant.color_Background,
       body: CustomBodyContainer(
         <Widget>[
             CustomText(

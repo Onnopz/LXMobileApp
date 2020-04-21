@@ -21,7 +21,7 @@ class _ShowDirectionState extends State<ShowDirection> {
         }
       },
           pageIndex),
-      backgroundColor: DataStorage.bg_Color,
+      backgroundColor: AppConstant.color_Background,
       body: CustomBodyContainer(
           <Widget>[
             Image.asset("assets/map.png"),
@@ -33,12 +33,12 @@ class _ShowDirectionState extends State<ShowDirection> {
                   children: <Widget>[
                     CustomText("Direction",
                         0, 20.0, 0, 20.0,
-                        DataStorage.textSize_head
+                        AppConstant.textSize_head
                     ),
                     CustomText(
                         "Some instruction text",
                         0, 0, 0, 0,
-                        DataStorage.textSize_body
+                        AppConstant.textSize_body
                     ),
                   ],
                 ),
@@ -49,9 +49,9 @@ class _ShowDirectionState extends State<ShowDirection> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 CustomButton("Back to selection",
-                    DataStorage.textSize_mainButton,
-                    DataStorage.buttonMainLR,
-                    DataStorage.buttonMainTB,
+                    AppConstant.textSize_button_main,
+                    AppConstant.padding_button_mainLR,
+                    AppConstant.padding_button_mainTB,
                     (){
                       Navigator.pop(context);
                     }

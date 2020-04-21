@@ -59,10 +59,10 @@ class _ChooseLoState extends State<ChooseLo> {
                 builder: (context) => CustomNavigationBar.page[i]));
           }
         }, pageIndex),
-        backgroundColor: DataStorage.bg_Color,
+        backgroundColor: AppConstant.color_Background,
         body: Container(
-          margin: EdgeInsets.fromLTRB(DataStorage.mainMargin_LR,
-              DataStorage.mainMargin_TB, DataStorage.mainMargin_LR, 0),
+          margin: EdgeInsets.fromLTRB(AppConstant.margin_mainLR,
+              AppConstant.margin_mainTB, AppConstant.margin_mainLR, 0),
           child: Column(
             children: <Widget>[
               // This row is for BACK Button
@@ -86,7 +86,7 @@ class _ChooseLoState extends State<ChooseLo> {
                   Column(
                     children: <Widget>[
                       CustomText("Choose destination", 0, 18, 0, 20,
-                          DataStorage.textSize_secondHead),
+                          AppConstant.textSize_secondHead),
 
                       CustomTextField(
                           "Tell me what it is",
