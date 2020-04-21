@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lx_mobile_app/find_direction.dart';
+import 'package:lx_mobile_app/gmap_nav.dart';
 import 'data_storage.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,6 +37,14 @@ class _HomePageState extends State<HomePage> {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => FindDirection()));
                 }),
+
+                SizedBox(height: 20.0,),
+
+                CustomButton("Map to LX", DataStorage.textSize_mainButton,
+                    DataStorage.buttonMainLR, DataStorage.buttonMainTB, () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => GMapNavigator()));
+                    }),
               ],
             )
           ],

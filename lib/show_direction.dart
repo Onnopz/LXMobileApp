@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/choose_location.dart';
 import 'data_storage.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
 
 class ShowDirection extends StatefulWidget {
   ShowDirection();
@@ -24,13 +22,43 @@ class _ShowDirectionState extends State<ShowDirection> {
       },
           pageIndex),
       backgroundColor: DataStorage.bg_Color,
-      body: CustomBodyContainer(<Widget>[
-        CustomText("Direction", DataStorage.mainMargin_LR,
-            DataStorage.mainMargin_TB,
-            DataStorage.mainMargin_LR,
-            0,
-            DataStorage.textSize_head
-        ),
+      body: CustomBodyContainer(
+          <Widget>[
+            Image.asset("assets/map.png"),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    CustomText("Direction",
+                        0, 20.0, 0, 20.0,
+                        DataStorage.textSize_head
+                    ),
+                    CustomText(
+                        "Some instruction text",
+                        0, 0, 0, 0,
+                        DataStorage.textSize_body
+                    ),
+                  ],
+                ),
+              ],
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CustomButton("Back to selection",
+                    DataStorage.textSize_mainButton,
+                    DataStorage.buttonMainLR,
+                    DataStorage.buttonMainTB,
+                    (){
+                      Navigator.pop(context);
+                    }
+                )
+              ],
+            ),
+
       ], context),
     );
   }

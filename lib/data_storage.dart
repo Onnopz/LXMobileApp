@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lx_mobile_app/find_direction.dart';
+import 'package:lx_mobile_app/gmap_nav.dart';
 import 'package:lx_mobile_app/home_page.dart';
 
 // Storage class
@@ -184,6 +185,7 @@ class CustomNavigationBar extends BottomNavigationBar {
   static final List<Widget> page = [
     HomePage(),
     FindDirection(),
+    GMapNavigator(),
   ];
 
   CustomNavigationBar(Function func, int selected)
@@ -198,6 +200,10 @@ class CustomNavigationBar extends BottomNavigationBar {
             BottomNavigationBarItem(
               icon: Icon(Icons.map),
               title: Text("Navigator"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.location_on),
+              title: Text("Map to LX"),
             ),
           ],
           onTap: func,
@@ -230,7 +236,7 @@ class CustomTextField extends Container{
 }
 
 class LocationListItem extends GestureDetector{
-  int index;
+  final int index;
 
   LocationListItem(this.index, BuildContext context) :
         super(

@@ -10,6 +10,34 @@ class ChooseLo extends StatefulWidget {
 
 class _ChooseLoState extends State<ChooseLo> {
   static final pageIndex = 1;
+  static List<Widget> locList = [];
+
+  void checkMatch(String str){
+    setState(() {
+        locList = [];
+
+        for(int i = 0; i < LocationStorage.locationName.length; i++){
+          if(LocationStorage.locationName[i].contains(str)){
+            locList.add(LocationListItem(i, context));
+          }
+        }
+
+    });
+  }
+  
+  @override
+  void initState(){
+    setState(() {
+      print("Initstate called");
+
+      locList.clear();
+
+      for(int i = 0; i < LocationStorage.locationName.length; i++){
+        locList.add(LocationListItem(i, context));
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +91,7 @@ class _ChooseLoState extends State<ChooseLo> {
                       CustomTextField(
                           "Tell me what it is",
                           (String str){
-
+                            checkMatch(str);
                           }
                       ),
                     ],
@@ -77,13 +105,7 @@ class _ChooseLoState extends State<ChooseLo> {
 
               Expanded(
                 child: ListView(
-                  children: <Widget>[
-                    LocationListItem(0, context),
-                    LocationListItem(1, context),
-                    LocationListItem(2, context),
-                    LocationListItem(3, context),
-                    LocationListItem(4, context),
-                  ],
+                  children: locList
                 ),
               ),
 
@@ -92,8 +114,5 @@ class _ChooseLoState extends State<ChooseLo> {
         ),
       ),
     );
-
-
-
   }
 }
