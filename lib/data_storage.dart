@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lx_mobile_app/about_lx.dart';
 import 'package:lx_mobile_app/find_direction.dart';
 import 'package:lx_mobile_app/gmap_nav.dart';
 import 'package:lx_mobile_app/home_page.dart';
@@ -136,8 +137,8 @@ class CustomBackButton extends FlatButton {
 
 // Object widget
 class CustomButton extends RaisedButton {
-  CustomButton(String text, double textSize, double padding_LR,
-      double padding_TB, Function func)
+  CustomButton(String text, double textSize, double paddingLR,
+      double paddingTB, Function func)
       : super(
             child: Text(
               text,
@@ -147,7 +148,7 @@ class CustomButton extends RaisedButton {
             color: AppConstant.color_Button,
             textColor: AppConstant.color_ButtonText,
             padding: EdgeInsets.fromLTRB(
-                padding_LR, padding_TB, padding_LR, padding_TB),
+                paddingLR, paddingTB, paddingLR, paddingTB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ));
@@ -173,12 +174,16 @@ class CustomNavigationBar extends BottomNavigationBar {
     HomePage(),
     FindDirection(),
     GMapNavigator(),
+    AboutLX(),
   ];
 
   CustomNavigationBar(Function func, int selected)
       : super(
           currentIndex: selected,
+          type: BottomNavigationBarType.fixed,
           selectedItemColor: AppConstant.color_Button,
+          unselectedItemColor: AppConstant.color_Text,
+          showUnselectedLabels: true,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -191,6 +196,10 @@ class CustomNavigationBar extends BottomNavigationBar {
             BottomNavigationBarItem(
               icon: Icon(Icons.location_on),
               title: Text("Map to LX"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.local_atm),
+              title: Text("About LX"),                                                                
             ),
           ],
           onTap: func,
@@ -222,12 +231,9 @@ class CustomTextField extends Container {
 class LocationListItem extends GestureDetector {
   final int index;
 
-  LocationListItem(this.index, BuildContext context)
+  LocationListItem(this.index, Function func)
       : super(
-            onTap: () {
-              LocationStorage.target = index;
-              Navigator.pop(context);
-            },
+            onTap: func,
             child: Container(
               margin: EdgeInsets.fromLTRB(0, 10.0, 0, 10.0),
               decoration: BoxDecoration(

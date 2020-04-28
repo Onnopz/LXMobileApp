@@ -1,64 +1,57 @@
 import 'package:flutter/material.dart';
 import 'data_storage.dart';
 
-class ChooseLo extends StatefulWidget {
-  ChooseLo();
+class AboutLX extends StatefulWidget {
+  AboutLX();
 
   @override
-  _ChooseLoState createState() => _ChooseLoState();
+  _AboutLXState createState() => _AboutLXState();
 }
 
-class _ChooseLoState extends State<ChooseLo> {
-  static final pageIndex = 1;
+class _AboutLXState extends State<AboutLX> {
+  static final pageIndex = 3;
   static List<Widget> locList = [];
 
-  void checkMatch(String str){
+  void checkMatch(String str) {
     setState(() {
-        locList = [];
+      locList = [];
 
-        for(int i = 0; i < LocationStorage.locationName.length; i++){
-          if(LocationStorage.locationName[i].contains(str)){
-            locList.add(LocationListItem(i, (){
-              LocationStorage.target = i;
-              Navigator.pop(context);
-            }));
-          }
+      for (int i = 0; i < LocationStorage.locationName.length; i++) {
+        if (LocationStorage.locationName[i].contains(str)) {
+          locList.add(LocationListItem(i, () {
+            print("Go to info page");
+          }));
         }
-
+      }
     });
   }
-  
+
   @override
-  void initState(){
+  void initState() {
     setState(() {
       print("Initstate called");
 
       locList.clear();
 
-      for(int i = 0; i < LocationStorage.locationName.length; i++){
-                    locList.add(LocationListItem(i, (){
-              LocationStorage.target = i;
-              Navigator.pop(context);
-            }));
+      for (int i = 0; i < LocationStorage.locationName.length; i++) {
+        locList.add(LocationListItem(i, () {
+          print("Go to info page");
+        }));
       }
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return
-     GestureDetector(
-      onTap: (){
+    return GestureDetector(
+      onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
 
-        if(!currentFocus.hasPrimaryFocus){
+        if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
       },
-
-      child:
-      Scaffold(
+      child: Scaffold(
         bottomNavigationBar: CustomNavigationBar((int i) {
           if (i != pageIndex) {
             Navigator.of(context).push(MaterialPageRoute(
@@ -91,15 +84,11 @@ class _ChooseLoState extends State<ChooseLo> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      CustomText("Choose destination", 0, 18, 0, 20,
+                      CustomText("What do you want to know?", 0, 18, 0, 20,
                           AppConstant.textSize_secondHead),
-
-                      CustomTextField(
-                          "Tell me what it is",
-                          (String str){
-                            checkMatch(str);
-                          }
-                      ),
+                      CustomTextField("Tell me what it is", (String str) {
+                        checkMatch(str);
+                      }),
                     ],
                   ),
                 ],
@@ -110,11 +99,8 @@ class _ChooseLoState extends State<ChooseLo> {
               HorizontalLine(),
 
               Expanded(
-                child: ListView(
-                  children: locList
-                ),
+                child: ListView(children: locList),
               ),
-
             ],
           ),
         ),
