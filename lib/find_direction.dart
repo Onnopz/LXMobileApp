@@ -17,10 +17,12 @@ class _FindDirectionState extends State<FindDirection> {
   Column targetCol;
 
   static bool buttonReady;
+  static bool locNotSame;
 
   void checkForButton(){
     setState(() {
       buttonReady = LocationStorage.origin >= 0 && LocationStorage.target >= 0;
+      locNotSame = LocationStorage.origin != LocationStorage.target;
     });
   }
 
@@ -113,6 +115,8 @@ class _FindDirectionState extends State<FindDirection> {
 
   void onScanFail() {
     setState(() {
+      LocationStorage.origin = -1;
+      checkForButton();
       originCol = Column(
         children: <Widget>[
           CustomText(
@@ -122,7 +126,7 @@ class _FindDirectionState extends State<FindDirection> {
     });
   }
 
-  bool checkQR_valid(String qrStr) {
+  bool checkQRValid(String qrStr) {
     if (qrStr.length < 22) {
       return false;
     } else {
@@ -133,7 +137,7 @@ class _FindDirectionState extends State<FindDirection> {
 
   void scanQR() {
     scanner.scan().then((String str) {
-      if (checkQR_valid(str)) {
+      if (checkQRValid(str)) {
         String tmp = str.substring(21);
         String extract = "";
         for (var i = 0; i < tmp.length && "0123456789".contains(tmp[i]); i++) {
@@ -219,7 +223,7 @@ class _FindDirectionState extends State<FindDirection> {
         SizedBox(height: 10.0),
 
         Visibility(
-          visible: buttonReady,
+          visible: buttonReady && locNotSame,
           child: Column(
             children: <Widget>[
               HorizontalLine(),
@@ -244,6 +248,13 @@ class _FindDirectionState extends State<FindDirection> {
             ],
           ),
         ),
+        Visibility(
+          visible: buttonReady && !locNotSame,
+          child: CustomText(
+            "You are already there!",
+            0, 0, 0, 0, AppConstant.textSize_secondHead),
+        ),
+
         SizedBox(height: 30.0),
       ], context),
     );

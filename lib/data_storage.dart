@@ -6,9 +6,12 @@ import 'package:lx_mobile_app/gmap_nav.dart';
 import 'package:lx_mobile_app/home_page.dart';
 
 // Storage class
+
 class LocationStorage {
-  static var origin = -1;
-  static var target = -1;
+  static int origin = -1;
+  static int target = -1;
+
+  static int aboutLXChosen = -1;
 
   static const List<String> locationName = [
     "Location 0",
@@ -25,7 +28,40 @@ class LocationStorage {
     "Location 11",
     "Location 12",
     "Location 13",
-    "Location 14",
+  ];
+
+  static const List<List<int>> mockUpInst = [
+    [5, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [3, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [4, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [5, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [6, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [7, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [8, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [9, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [2, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [3, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [4, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [5, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [6, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+    [7, 5, 9, 3, 5, 6, 1, 2, 8, 5, 8, 9, 8, 8],
+  ];
+
+  static final List<String> aboutInfo = [
+    "About for 0 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 4 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 5 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 6 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 7 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 8 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 9 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 10 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 11 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 12 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus.",
+    "About for 13 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium, mauris quis viverra ultricies, lacus elit pretium nibh, ac convallis tortor arcu ac tellus."
   ];
 }
 
@@ -54,7 +90,6 @@ class AppConstant {
 
   static const double padding_button_smallTB = 5.0;
   static const double padding_button_smallLR = 15.0;
-
 }
 
 // Layout widget
@@ -137,8 +172,8 @@ class CustomBackButton extends FlatButton {
 
 // Object widget
 class CustomButton extends RaisedButton {
-  CustomButton(String text, double textSize, double paddingLR,
-      double paddingTB, Function func)
+  CustomButton(String text, double textSize, double paddingLR, double paddingTB,
+      Function func)
       : super(
             child: Text(
               text,
@@ -147,8 +182,8 @@ class CustomButton extends RaisedButton {
             onPressed: func,
             color: AppConstant.color_Button,
             textColor: AppConstant.color_ButtonText,
-            padding: EdgeInsets.fromLTRB(
-                paddingLR, paddingTB, paddingLR, paddingTB),
+            padding:
+                EdgeInsets.fromLTRB(paddingLR, paddingTB, paddingLR, paddingTB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ));
@@ -161,6 +196,7 @@ class CustomText extends Container {
           margin: EdgeInsets.fromLTRB(left, top, right, bottom),
           child: Text(
             text,
+            maxLines: null,
             style: TextStyle(
               fontSize: size,
               color: AppConstant.color_Text,
@@ -198,8 +234,8 @@ class CustomNavigationBar extends BottomNavigationBar {
               title: Text("Map to LX"),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.local_atm),
-              title: Text("About LX"),                                                                
+              icon: Icon(Icons.business),
+              title: Text("About LX"),
             ),
           ],
           onTap: func,

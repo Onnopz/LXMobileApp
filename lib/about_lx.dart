@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lx_mobile_app/about_lx_info.dart';
 import 'data_storage.dart';
 
 class AboutLX extends StatefulWidget {
@@ -19,7 +20,9 @@ class _AboutLXState extends State<AboutLX> {
       for (int i = 0; i < LocationStorage.locationName.length; i++) {
         if (LocationStorage.locationName[i].contains(str)) {
           locList.add(LocationListItem(i, () {
-            print("Go to info page");
+                      LocationStorage.aboutLXChosen = i;
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AboutLXinfo()));
           }));
         }
       }
@@ -28,6 +31,7 @@ class _AboutLXState extends State<AboutLX> {
 
   @override
   void initState() {
+    super.initState();
     setState(() {
       print("Initstate called");
 
@@ -35,7 +39,9 @@ class _AboutLXState extends State<AboutLX> {
 
       for (int i = 0; i < LocationStorage.locationName.length; i++) {
         locList.add(LocationListItem(i, () {
-          print("Go to info page");
+          LocationStorage.aboutLXChosen = i;
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AboutLXinfo()));
         }));
       }
     });
