@@ -9,7 +9,7 @@ class ShowDirection extends StatefulWidget {
 }
 
 class _ShowDirectionState extends State<ShowDirection> {
-  static final pageIndex = 3;
+  static final pageIndex = 1;
   static int currentStep = 0;
   static bool firstORlast = true;
 
