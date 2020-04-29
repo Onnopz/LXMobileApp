@@ -1,63 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/about_lx_info.dart';
-import 'data_storage.dart';
+import '../data/data_storage.dart';
 
-class AboutLX extends StatefulWidget {
-  AboutLX();
+class ChooseLo extends StatefulWidget {
+  ChooseLo();
 
   @override
-  _AboutLXState createState() => _AboutLXState();
+  _ChooseLoState createState() => _ChooseLoState();
 }
 
-class _AboutLXState extends State<AboutLX> {
-  static final pageIndex = 3;
+class _ChooseLoState extends State<ChooseLo> {
+  static final pageIndex = 1;
   static List<Widget> locList = [];
 
-  void checkMatch(String str) {
+  void checkMatch(String str){
     setState(() {
-      locList = [];
+        locList = [];
 
-      for (int i = 0; i < LocationStorage.locationName.length; i++) {
-        if (LocationStorage.locationName[i].contains(str)) {
-          locList.add(LocationListItem(i, () {
-                      LocationStorage.aboutLXChosen = i;
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AboutLXinfo()));
-          }));
+        for(int i = 0; i < LocationStorage.locationName.length; i++){
+          if(LocationStorage.locationName[i].contains(str)){
+            locList.add(LocationListItem(i, (){
+              LocationStorage.target = i;
+              Navigator.pop(context);
+            }));
+          }
         }
-      }
+
     });
   }
-
+  
   @override
-  void initState() {
+  void initState(){
     super.initState();
     setState(() {
       print("Initstate called");
 
       locList.clear();
 
-      for (int i = 0; i < LocationStorage.locationName.length; i++) {
-        locList.add(LocationListItem(i, () {
-          LocationStorage.aboutLXChosen = i;
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AboutLXinfo()));
-        }));
+      for(int i = 0; i < LocationStorage.locationName.length; i++){
+                    locList.add(LocationListItem(i, (){
+              LocationStorage.target = i;
+              Navigator.pop(context);
+            }));
       }
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
+    return
+     GestureDetector(
+      onTap: (){
         FocusScopeNode currentFocus = FocusScope.of(context);
 
-        if (!currentFocus.hasPrimaryFocus) {
+        if(!currentFocus.hasPrimaryFocus){
           currentFocus.unfocus();
         }
       },
-      child: Scaffold(
+
+      child:
+      Scaffold(
         bottomNavigationBar: CustomNavigationBar((int i) {
           if (i != pageIndex) {
             Navigator.of(context).push(MaterialPageRoute(
@@ -76,7 +78,7 @@ class _AboutLXState extends State<AboutLX> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      CustomBackButton(context),
+                      CustomBackButton(context: context),
                       SizedBox(
                         height: 10.0,
                       )
@@ -90,11 +92,15 @@ class _AboutLXState extends State<AboutLX> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      CustomText("What do you want to know?", 0, 18, 0, 20,
+                      CustomText("Choose destination", 0, 18, 0, 20,
                           AppConstant.textSize_secondHead),
-                      CustomTextField("Tell me what it is", (String str) {
-                        checkMatch(str);
-                      }),
+
+                      CustomTextField(
+                          "Tell me what it is",
+                          (String str){
+                            checkMatch(str);
+                          }
+                      ),
                     ],
                   ),
                 ],
@@ -105,8 +111,11 @@ class _AboutLXState extends State<AboutLX> {
               HorizontalLine(),
 
               Expanded(
-                child: ListView(children: locList),
+                child: ListView(
+                  children: locList
+                ),
               ),
+
             ],
           ),
         ),

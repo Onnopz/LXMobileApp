@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'data_storage.dart';
+import '../data/data_storage.dart';
 
 class AboutLXinfo extends StatefulWidget {
   AboutLXinfo();
@@ -26,7 +26,8 @@ class _AboutLXinfoState extends State<AboutLXinfo> {
         }
       }, pageIndex),
       backgroundColor: AppConstant.color_Background,
-      body: CustomBodyContainer(<Widget>[
+      body: CustomBodyContainer(
+        children: <Widget>[
         Image.asset(
           "assets/loc${LocationStorage.aboutLXChosen}.jpg",
           scale: 8,
@@ -80,17 +81,19 @@ class _AboutLXinfoState extends State<AboutLXinfo> {
                   height: 10,
                 ),
                 CustomButton(
-                    "Back to selection",
-                    AppConstant.textSize_button_main,
-                    AppConstant.padding_button_mainLR,
-                    AppConstant.padding_button_mainTB, () {
-                  Navigator.pop(context);
-                })
+                    text: "Back to selection",
+                    sizePreset: AppConstant.preset_button_main,
+                    onPressed: () {
+                      Navigator.pop(context);
+                  }
+                )
               ],
             ),
           ],
         ),
-      ], context),
+      ],
+      
+      context: context),
     );
   }
 }

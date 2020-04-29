@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/about_lx.dart';
-import 'package:lx_mobile_app/find_direction.dart';
-import 'package:lx_mobile_app/gmap_nav.dart';
-import 'package:lx_mobile_app/home_page.dart';
+import 'package:lx_mobile_app/screen/about_lx.dart';
+import 'package:lx_mobile_app/screen/find_direction.dart';
+import 'package:lx_mobile_app/screen/gmap_nav.dart';
+import 'package:lx_mobile_app/screen/home_page.dart';
 
 // Storage class
 
@@ -85,16 +85,35 @@ class AppConstant {
   static const double textSize_button_small = 15.0;
 
   // button info
-  static const double padding_button_mainTB = 15.0;
   static const double padding_button_mainLR = 40.0;
+  static const double padding_button_mainTB = 15.0;
+  
 
-  static const double padding_button_smallTB = 5.0;
   static const double padding_button_smallLR = 15.0;
+  static const double padding_button_smallTB = 5.0;
+
+  //button presets
+  // textSize, paddingLR, paddingTB
+  static const List<double> preset_button_main = [20.0, 40.0, 15.0];
+  static const List<double> preset_button_small = [15.0, 15.0, 5.0];
+}
+
+class CustomButtonPreset{
+  
 }
 
 // Layout widget
 class CustomMainContainer extends Container {
-  CustomMainContainer(Widget child)
+  // CustomMainContainer(Widget child)
+  //     : super(
+  //           margin: EdgeInsets.fromLTRB(
+  //               AppConstant.margin_mainLR,
+  //               AppConstant.margin_mainTB,
+  //               AppConstant.margin_mainLR,
+  //               AppConstant.margin_mainTB),
+  //           child: child);
+
+  CustomMainContainer({Widget child})
       : super(
             margin: EdgeInsets.fromLTRB(
                 AppConstant.margin_mainLR,
@@ -105,7 +124,7 @@ class CustomMainContainer extends Container {
 }
 
 class CustomBodyContainer extends Container {
-  CustomBodyContainer(List<Widget> children, BuildContext context)
+  CustomBodyContainer({List<Widget> children, BuildContext context})
       : super(
             margin: EdgeInsets.fromLTRB(AppConstant.margin_mainLR,
                 AppConstant.margin_mainTB, AppConstant.margin_mainLR, 0),
@@ -117,7 +136,7 @@ class CustomBodyContainer extends Container {
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        CustomBackButton(context),
+                        CustomBackButton(context: context),
                         SizedBox(
                           height: 10.0,
                         )
@@ -148,7 +167,7 @@ class HorizontalLine extends Container {
 }
 
 class CustomBackButton extends FlatButton {
-  CustomBackButton(BuildContext context)
+  CustomBackButton({BuildContext context})
       : super(
             onPressed: () {
               Navigator.pop(context);
@@ -172,18 +191,20 @@ class CustomBackButton extends FlatButton {
 
 // Object widget
 class CustomButton extends RaisedButton {
-  CustomButton(String text, double textSize, double paddingLR, double paddingTB,
-      Function func)
+  CustomButton({String text, @required List<double> sizePreset, Function onPressed})
       : super(
             child: Text(
               text,
-              style: TextStyle(fontSize: textSize),
+              style: TextStyle(fontSize: sizePreset[0]),
             ),
-            onPressed: func,
+            onPressed: onPressed,
             color: AppConstant.color_Button,
             textColor: AppConstant.color_ButtonText,
             padding:
-                EdgeInsets.fromLTRB(paddingLR, paddingTB, paddingLR, paddingTB),
+                EdgeInsets.symmetric(
+                  horizontal: sizePreset[1],
+                  vertical: sizePreset[2],
+                ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ));

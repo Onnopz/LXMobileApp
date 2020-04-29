@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'data_storage.dart';
+import '../data/data_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 import 'package:location/location.dart';
@@ -53,7 +53,7 @@ class _GMapNavigatorState extends State<GMapNavigator> {
       ),
       body: GoogleMap(
         myLocationEnabled: true,
-        markers: <Marker>{
+        markers: {
           Marker(
             markerId: MarkerId("1"),
             position: LatLng(13.651975, 100.493738),

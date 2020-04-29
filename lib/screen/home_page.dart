@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/about_lx.dart';
-import 'package:lx_mobile_app/find_direction.dart';
-import 'package:lx_mobile_app/gmap_nav.dart';
-import 'data_storage.dart';
+import 'package:lx_mobile_app/screen/about_lx.dart';
+import 'package:lx_mobile_app/screen/find_direction.dart';
+import 'package:lx_mobile_app/screen/gmap_nav.dart';
+import '../data/data_storage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage();
@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       }, pageIndex),
       backgroundColor: AppConstant.color_Background,
       body: CustomMainContainer(
-        Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Column(
@@ -33,10 +33,9 @@ class _HomePageState extends State<HomePage> {
                 CustomText("What do you want to do?", 0, 20, 0, 40,
                     AppConstant.textSize_head),
                 CustomButton(
-                    "Find direction",
-                    AppConstant.textSize_button_main,
-                    AppConstant.padding_button_mainLR,
-                    AppConstant.padding_button_mainTB, () {
+                  text: "Find direction",
+                  sizePreset: AppConstant.preset_button_main,
+                  onPressed: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => FindDirection()));
                 }),
@@ -44,24 +43,21 @@ class _HomePageState extends State<HomePage> {
                   height: 20.0,
                 ),
                 CustomButton(
-                    "Map to LX",
-                    AppConstant.textSize_button_main,
-                    AppConstant.padding_button_mainLR,
-                    AppConstant.padding_button_mainTB, () {
-                      Navigator.of(context).push(
+                  text: "Map to LX",
+                  sizePreset: AppConstant.preset_button_main,
+                  onPressed: () {
+                  Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => GMapNavigator()));
                 }),
                 SizedBox(
                   height: 20.0,
                 ),
                 CustomButton(
-                    "About LX",
-                    AppConstant.textSize_button_main,
-                    AppConstant.padding_button_mainLR,
-                    AppConstant.padding_button_mainTB, () {
-                      Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AboutLX())
-                    );
+                  text: "About LX",
+                  sizePreset: AppConstant.preset_button_main,
+                  onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => AboutLX()));
                 }),
               ],
             )

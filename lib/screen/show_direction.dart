@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'data_storage.dart';
+import '../data/data_storage.dart';
 
 class ShowDirection extends StatefulWidget {
   ShowDirection();
@@ -13,13 +13,16 @@ class _ShowDirectionState extends State<ShowDirection> {
   static int currentStep = 0;
   static bool firstORlast = true;
 
-  void reloadPrevNext(){
+  void reloadPrevNext() {
     setState(() {
-      firstORlast = currentStep == 0 || currentStep + 1 == LocationStorage.mockUpInst[LocationStorage.origin][LocationStorage.target];
+      firstORlast = currentStep == 0 ||
+          currentStep + 1 ==
+              LocationStorage.mockUpInst[LocationStorage.origin]
+                  [LocationStorage.target];
     });
   }
 
-  void showInfo(){
+  void showInfo() {
     print("${LocationStorage.origin} to ${LocationStorage.target}");
   }
 
@@ -32,11 +35,12 @@ class _ShowDirectionState extends State<ShowDirection> {
               builder: (context) => CustomNavigationBar.page[i]));
         }
       }, pageIndex),
-
       backgroundColor: AppConstant.color_Background,
-
-      body: CustomBodyContainer(<Widget>[
-        Image.asset("assets/map.png", scale: 1.4,),
+      body: CustomBodyContainer(children: <Widget>[
+        Image.asset(
+          "assets/map.png",
+          scale: 1.4,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -44,7 +48,12 @@ class _ShowDirectionState extends State<ShowDirection> {
               children: <Widget>[
                 CustomText("Step ${currentStep + 1}", 0, 20.0, 0, 20.0,
                     AppConstant.textSize_head),
-                CustomText("Location ${LocationStorage.origin} to ${LocationStorage.target}", 0, 0, 0, 0,
+                CustomText(
+                    "Location ${LocationStorage.origin} to ${LocationStorage.target}",
+                    0,
+                    0,
+                    0,
+                    0,
                     AppConstant.textSize_body),
               ],
             ),
@@ -53,44 +62,44 @@ class _ShowDirectionState extends State<ShowDirection> {
         SizedBox(
           height: 10,
         ),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Visibility(
               visible: currentStep > 0,
               child: CustomButton(
-                "Previous",
-                AppConstant.textSize_button_small,
-                AppConstant.padding_button_smallLR,
-                AppConstant.padding_button_smallTB, () {
-                  setState(() {
-                    currentStep--;
-                    reloadPrevNext();
-                    showInfo();
-              });
-            }),
+                text: "Previous",
+                sizePreset: AppConstant.preset_button_small,
+                onPressed: () {
+                setState(() {
+                  currentStep--;
+                  reloadPrevNext();
+                  showInfo();
+                });
+              }),
             ),
-          
-            if( currentStep > 0 && currentStep + 1 < LocationStorage.mockUpInst[LocationStorage.origin][LocationStorage.target])
-            SizedBox(
-              width: 60,
-            ),
+            if (currentStep > 0 &&
+                currentStep + 1 <
+                    LocationStorage.mockUpInst[LocationStorage.origin]
+                        [LocationStorage.target])
+              SizedBox(
+                width: 60,
+              ),
             Visibility(
-              visible: currentStep + 1 < LocationStorage.mockUpInst[LocationStorage.origin][LocationStorage.target],
-              child:  CustomButton(
-                "Next",
-                AppConstant.textSize_button_small,
-                AppConstant.padding_button_smallLR,
-                AppConstant.padding_button_smallTB, () {
-              setState(() {
-                currentStep++;
-                reloadPrevNext();
-                showInfo();
-              });
-            }),
+              visible: currentStep + 1 <
+                  LocationStorage.mockUpInst[LocationStorage.origin]
+                      [LocationStorage.target],
+              child: CustomButton(
+                text: "Next",
+                sizePreset: AppConstant.preset_button_small,
+                onPressed: () {
+                setState(() {
+                  currentStep++;
+                  reloadPrevNext();
+                  showInfo();
+                });
+              }),
             ),
-           
           ],
         ),
         SizedBox(
@@ -106,17 +115,18 @@ class _ShowDirectionState extends State<ShowDirection> {
                   height: 10,
                 ),
                 CustomButton(
-                    "Back to selection",
-                    AppConstant.textSize_button_main,
-                    AppConstant.padding_button_mainLR,
-                    AppConstant.padding_button_mainTB, () {
+                  text: "Back to selection",
+                  sizePreset: AppConstant.preset_button_small,
+                  onPressed: () {
                   Navigator.pop(context);
                 })
               ],
             ),
           ],
         ),
-      ], context),
+      ],
+      context: context
+      ),
     );
   }
 }
