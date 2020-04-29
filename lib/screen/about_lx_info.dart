@@ -82,7 +82,7 @@ class _AboutLXinfoState extends State<AboutLXinfo> {
                 ),
                 CustomButton(
                     text: "Back to selection",
-                    sizePreset: AppConstant.preset_button_main,
+                    preset: CustomButtonPreset.main,
                     onPressed: () {
                       Navigator.pop(context);
                   }

@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                     AppConstant.textSize_head),
                 CustomButton(
                   text: "Find direction",
-                  sizePreset: AppConstant.preset_button_main,
+                  preset: CustomButtonPreset.main,
                   onPressed: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => FindDirection()));
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 CustomButton(
                   text: "Map to LX",
-                  sizePreset: AppConstant.preset_button_main,
+                  preset: CustomButtonPreset.main,
                   onPressed: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => GMapNavigator()));
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 CustomButton(
                   text: "About LX",
-                  sizePreset: AppConstant.preset_button_main,
+                  preset: CustomButtonPreset.main,
                   onPressed: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => AboutLX()));

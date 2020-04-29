@@ -46,7 +46,7 @@ class _ShowDirectionState extends State<ShowDirection> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                CustomText("Step ${currentStep + 1}", 0, 20.0, 0, 20.0,
+                CustomText("Step ${currentStep + 1} out of ${LocationStorage.mockUpInst[LocationStorage.origin][LocationStorage.target]}", 0, 20.0, 0, 20.0,
                     AppConstant.textSize_head),
                 CustomText(
                     "Location ${LocationStorage.origin} to ${LocationStorage.target}",
@@ -69,7 +69,7 @@ class _ShowDirectionState extends State<ShowDirection> {
               visible: currentStep > 0,
               child: CustomButton(
                 text: "Previous",
-                sizePreset: AppConstant.preset_button_small,
+                preset: CustomButtonPreset.small,
                 onPressed: () {
                 setState(() {
                   currentStep--;
@@ -91,7 +91,7 @@ class _ShowDirectionState extends State<ShowDirection> {
                       [LocationStorage.target],
               child: CustomButton(
                 text: "Next",
-                sizePreset: AppConstant.preset_button_small,
+                preset: CustomButtonPreset.small,
                 onPressed: () {
                 setState(() {
                   currentStep++;
@@ -116,7 +116,7 @@ class _ShowDirectionState extends State<ShowDirection> {
                 ),
                 CustomButton(
                   text: "Back to selection",
-                  sizePreset: AppConstant.preset_button_small,
+                  preset: CustomButtonPreset.main,
                   onPressed: () {
                   Navigator.pop(context);
                 })
