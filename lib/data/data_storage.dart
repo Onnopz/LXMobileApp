@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/screen/about_lx.dart';
-import 'package:lx_mobile_app/screen/find_direction.dart';
-import 'package:lx_mobile_app/screen/gmap_nav.dart';
-import 'package:lx_mobile_app/screen/home_page.dart';
+import '../screen/about_lx/main_page.dart';
+import '../screen/find_direction/main_page.dart';
+import '../screen/map_to_lx/main_page.dart';
+import '../screen/home/main_page.dart';
 
 // Storage class
 
@@ -81,21 +81,12 @@ class AppConstant {
   static const double textSize_secondHead = 20.0;
   static const double textSize_body = 15.0;
 
-  static const double textSize_button_main = 20.0;
-  static const double textSize_button_small = 15.0;
-
-  // button info
-  static const double padding_button_mainLR = 40.0;
-  static const double padding_button_mainTB = 15.0;
-
-  static const double padding_button_smallLR = 15.0;
-  static const double padding_button_smallTB = 5.0;
-
-  //button presets
-  // textSize, paddingLR, paddingTB
+  static const double textSize_textFieldHint = 15.0;
 }
 
 class CustomButtonPreset {
+  // textSize, paddingLR, paddingTB
+
   static const List<double> main = [20.0, 40.0, 15.0];
   static const List<double> small = [15.0, 15.0, 5.0];
 }
@@ -113,12 +104,12 @@ class CustomMainContainer extends Container {
 
   CustomMainContainer({Widget child})
       : super(
-            margin: EdgeInsets.fromLTRB(
-                AppConstant.margin_mainLR,
-                AppConstant.margin_mainTB,
-                AppConstant.margin_mainLR,
-                AppConstant.margin_mainTB),
-            child: child);
+            margin: EdgeInsets.symmetric(
+              horizontal: AppConstant.margin_mainLR,
+              vertical: AppConstant.margin_mainTB,
+            ),
+            child: child
+            );
 }
 
 class CustomBodyContainer extends Container {
@@ -128,6 +119,7 @@ class CustomBodyContainer extends Container {
                 AppConstant.margin_mainTB, AppConstant.margin_mainLR, 0),
             child: Column(
               children: <Widget>[
+
                 // This row is for BACK Button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -267,13 +259,16 @@ class CustomTextField extends Container {
           width: 250.0,
           child: TextField(
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(15.0, 7.0, 15.0, 7.0),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 15.0,
+                vertical: 7.0
+              ),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15.0))),
               hintText: hint,
               hintStyle: TextStyle(
                   color: AppConstant.color_Text,
-                  fontSize: AppConstant.textSize_button_small),
+                  fontSize: AppConstant.textSize_textFieldHint),
               fillColor: Colors.white,
               filled: true,
             ),
@@ -289,7 +284,10 @@ class LocationListItem extends GestureDetector {
       : super(
             onTap: func,
             child: Container(
-              margin: EdgeInsets.fromLTRB(0, 10.0, 0, 10.0),
+              margin: EdgeInsets.symmetric(
+                horizontal: 0,
+                vertical: 10.0
+              ),
               decoration: BoxDecoration(
                   border: Border.all(color: AppConstant.color_Button, width: 3),
                   borderRadius: BorderRadius.all(Radius.circular(5.0))),

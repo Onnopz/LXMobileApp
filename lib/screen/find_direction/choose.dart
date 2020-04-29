@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/data_storage.dart';
+import '../../data/data_storage.dart';
 
 class ChooseLo extends StatefulWidget {
   ChooseLo();

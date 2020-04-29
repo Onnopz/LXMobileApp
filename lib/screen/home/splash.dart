@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-import '../data/data_storage.dart';
+import 'main_page.dart';
+import '../../data/data_storage.dart';
 
 class Splash extends StatefulWidget {
   Splash();

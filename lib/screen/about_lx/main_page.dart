@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/screen/about_lx_info.dart';
-import '../data/data_storage.dart';
+import '../../data/data_storage.dart';
+import 'info.dart';
+
 
 class AboutLX extends StatefulWidget {
   AboutLX();

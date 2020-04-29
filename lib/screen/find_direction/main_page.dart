@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/screen/choose_location.dart';
-import 'package:lx_mobile_app/screen/show_direction.dart';
-import '../data/data_storage.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
+import 'choose.dart';
+import 'show.dart';
+import '../../data/data_storage.dart';
 
 class FindDirection extends StatefulWidget {
   FindDirection();
@@ -237,7 +237,7 @@ class _FindDirectionState extends State<FindDirection> {
               RaisedButton(
                   child: Text(
                     "Get direction",
-                    style: TextStyle(fontSize: AppConstant.textSize_button_main),
+                    style: TextStyle(fontSize: AppConstant.textSize_secondHead),
                   ),
                   onPressed: () {
                     Navigator.push(

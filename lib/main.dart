@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/screen/splash.dart';
+import 'screen/home/splash.dart';
 
 void main() => runApp(MyApp());
 

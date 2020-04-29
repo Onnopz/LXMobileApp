@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lx_mobile_app/screen/about_lx.dart';
-import 'package:lx_mobile_app/screen/find_direction.dart';
-import 'package:lx_mobile_app/screen/gmap_nav.dart';
-import '../data/data_storage.dart';
+import '../about_lx/main_page.dart';
+import '../find_direction/main_page.dart';
+import '../map_to_lx/main_page.dart';
+import '../../data/data_storage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage();
