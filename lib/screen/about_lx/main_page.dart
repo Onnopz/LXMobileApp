@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/data_storage.dart';
+import '../../data/custom_widget.dart';
 import 'info.dart';
 
 
@@ -20,10 +21,12 @@ class _AboutLXState extends State<AboutLX> {
 
       for (int i = 0; i < LocationStorage.locationName.length; i++) {
         if (LocationStorage.locationName[i].contains(str)) {
-          locList.add(LocationListItem(i, () {
-                      LocationStorage.aboutLXChosen = i;
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AboutLXinfo()));
+          locList.add(LocationListItem(
+            index: i,
+            onTap: () {
+                LocationStorage.aboutLXChosen = i;
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AboutLXinfo()));
           }));
         }
       }
@@ -39,7 +42,9 @@ class _AboutLXState extends State<AboutLX> {
       locList.clear();
 
       for (int i = 0; i < LocationStorage.locationName.length; i++) {
-        locList.add(LocationListItem(i, () {
+        locList.add(LocationListItem(
+          index: i,
+          onTap: () {
           LocationStorage.aboutLXChosen = i;
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => AboutLXinfo()));
@@ -92,10 +97,15 @@ class _AboutLXState extends State<AboutLX> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      CustomText("What do you want to know?", 0, 18, 0, 20,
-                          AppConstant.textSize_secondHead),
-                      CustomTextField("Tell me what it is", (String str) {
-                        checkMatch(str);
+                      CustomText(
+                        text: "What do you want to know?",
+                        top: 18, bottom: 20,
+                        size: CustomTextSize.secondHead
+                      ),
+                      CustomTextField(
+                        hint: "Tell me what it is",
+                        onChanged: (String str) {
+                          checkMatch(str);
                       }),
                     ],
                   ),

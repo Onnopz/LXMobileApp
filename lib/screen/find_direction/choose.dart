@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/data_storage.dart';
+import '../../data/custom_widget.dart';
 
 class ChooseLo extends StatefulWidget {
   ChooseLo();
@@ -12,32 +13,35 @@ class _ChooseLoState extends State<ChooseLo> {
   static final pageIndex = 1;
   static List<Widget> locList = [];
 
-  void checkMatch(String str){
+  void checkMatch(String str) {
     setState(() {
-        locList = [];
+      locList = [];
 
-        for(int i = 0; i < LocationStorage.locationName.length; i++){
-          if(LocationStorage.locationName[i].contains(str)){
-            locList.add(LocationListItem(i, (){
-              LocationStorage.target = i;
-              Navigator.pop(context);
-            }));
-          }
+      for (int i = 0; i < LocationStorage.locationName.length; i++) {
+        if (LocationStorage.locationName[i].contains(str)) {
+          locList.add(LocationListItem(
+              index: i,
+              onTap: () {
+                LocationStorage.target = i;
+                Navigator.pop(context);
+              }));
         }
-
+      }
     });
   }
-  
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     setState(() {
       print("Initstate called");
 
       locList.clear();
 
-      for(int i = 0; i < LocationStorage.locationName.length; i++){
-                    locList.add(LocationListItem(i, (){
+      for (int i = 0; i < LocationStorage.locationName.length; i++) {
+        locList.add(LocationListItem(
+            index: i,
+            onTap: () {
               LocationStorage.target = i;
               Navigator.pop(context);
             }));
@@ -45,21 +49,17 @@ class _ChooseLoState extends State<ChooseLo> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return
-     GestureDetector(
-      onTap: (){
+    return GestureDetector(
+      onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
 
-        if(!currentFocus.hasPrimaryFocus){
+        if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
       },
-
-      child:
-      Scaffold(
+      child: Scaffold(
         bottomNavigationBar: CustomNavigationBar((int i) {
           if (i != pageIndex) {
             Navigator.of(context).push(MaterialPageRoute(
@@ -92,15 +92,16 @@ class _ChooseLoState extends State<ChooseLo> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      CustomText("Choose destination", 0, 18, 0, 20,
-                          AppConstant.textSize_secondHead),
-
+                      CustomText(
+                          text: "Choose destination",
+                          top: 18,
+                          bottom: 20,
+                          size: CustomTextSize.secondHead),
                       CustomTextField(
-                          "Tell me what it is",
-                          (String str){
+                          hint: "Tell me what it is",
+                          onChanged: (String str) {
                             checkMatch(str);
-                          }
-                      ),
+                          }),
                     ],
                   ),
                 ],
@@ -111,11 +112,8 @@ class _ChooseLoState extends State<ChooseLo> {
               HorizontalLine(),
 
               Expanded(
-                child: ListView(
-                  children: locList
-                ),
+                child: ListView(children: locList),
               ),
-
             ],
           ),
         ),

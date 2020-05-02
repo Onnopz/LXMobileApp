@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/data_storage.dart';
+import '../../data/custom_widget.dart';
 
 class ShowDirection extends StatefulWidget {
   ShowDirection();
@@ -46,15 +47,14 @@ class _ShowDirectionState extends State<ShowDirection> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                CustomText("Step ${currentStep + 1} out of ${LocationStorage.mockUpInst[LocationStorage.origin][LocationStorage.target]}", 0, 20.0, 0, 20.0,
-                    AppConstant.textSize_head),
                 CustomText(
-                    "Location ${LocationStorage.origin} to ${LocationStorage.target}",
-                    0,
-                    0,
-                    0,
-                    0,
-                    AppConstant.textSize_body),
+                  text: "Step ${currentStep + 1} out of ${LocationStorage.mockUpInst[LocationStorage.origin][LocationStorage.target]}",
+                  top: 20.0,
+                  bottom: 20.0,
+                  size: CustomTextSize.head),
+                CustomText(
+                  text: "Location ${LocationStorage.origin} to ${LocationStorage.target}",
+                  size: CustomTextSize.body),
               ],
             ),
           ],

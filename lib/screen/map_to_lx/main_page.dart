@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'dart:async';
 import '../../data/data_storage.dart';
+import '../../data/custom_widget.dart';
 
 class GMapNavigator extends StatefulWidget {
   GMapNavigator();

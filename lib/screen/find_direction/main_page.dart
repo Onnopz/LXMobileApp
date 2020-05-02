@@ -3,6 +3,7 @@ import 'package:qrscan/qrscan.dart' as scanner;
 import 'choose.dart';
 import 'show.dart';
 import '../../data/data_storage.dart';
+import '../../data/custom_widget.dart';
 
 class FindDirection extends StatefulWidget {
   FindDirection();
@@ -19,7 +20,7 @@ class _FindDirectionState extends State<FindDirection> {
   static bool buttonReady;
   static bool locNotSame;
 
-  void checkForButton(){
+  void checkForButton() {
     setState(() {
       buttonReady = LocationStorage.origin >= 0 && LocationStorage.target >= 0;
       locNotSame = LocationStorage.origin != LocationStorage.target;
@@ -37,8 +38,10 @@ class _FindDirectionState extends State<FindDirection> {
       if (LocationStorage.origin < 0) {
         originCol = Column(
           children: <Widget>[
-            CustomText("Scan QR in your area for starting location", 0, 0, 0,
-                18, AppConstant.textSize_body),
+            CustomText(
+                text: "Scan QR in your area for starting location",
+                bottom: 18,
+                size: CustomTextSize.body),
           ],
         );
       } else {
@@ -52,8 +55,10 @@ class _FindDirectionState extends State<FindDirection> {
               SizedBox(
                 height: 15.0,
               ),
-              CustomText(LocationStorage.locationName[LocationStorage.origin],
-                  0, 0, 0, 18, AppConstant.textSize_body),
+              CustomText(
+                  text: LocationStorage.locationName[LocationStorage.origin],
+                  bottom: 18,
+                  size: CustomTextSize.body),
             ],
           );
         });
@@ -64,8 +69,10 @@ class _FindDirectionState extends State<FindDirection> {
         setState(() {
           targetCol = Column(
             children: <Widget>[
-              CustomText("Choose your target location", 0, 0, 0, 18,
-                  AppConstant.textSize_body),
+              CustomText(
+                  text: "Choose your target location",
+                  bottom: 18,
+                  size: CustomTextSize.body),
             ],
           );
         });
@@ -80,8 +87,10 @@ class _FindDirectionState extends State<FindDirection> {
               SizedBox(
                 height: 15.0,
               ),
-              CustomText(LocationStorage.locationName[LocationStorage.target],
-                  0, 0, 0, 18, AppConstant.textSize_body),
+              CustomText(
+                  text: LocationStorage.locationName[LocationStorage.target],
+                  bottom: 18,
+                  size: CustomTextSize.body),
             ],
           );
         });
@@ -104,8 +113,10 @@ class _FindDirectionState extends State<FindDirection> {
           SizedBox(
             height: 15.0,
           ),
-          CustomText(LocationStorage.locationName[LocationStorage.origin], 0, 0,
-              0, 18, AppConstant.textSize_body),
+          CustomText(
+              text: LocationStorage.locationName[LocationStorage.origin],
+              bottom: 18,
+              size: CustomTextSize.body),
         ],
       );
 
@@ -120,7 +131,9 @@ class _FindDirectionState extends State<FindDirection> {
       originCol = Column(
         children: <Widget>[
           CustomText(
-              "Invalid QR. Try again", 0, 0, 0, 18, AppConstant.textSize_body),
+              text: "Invalid QR. Try again",
+              bottom: 18,
+              size: CustomTextSize.body),
         ],
       );
     });
@@ -169,20 +182,22 @@ class _FindDirectionState extends State<FindDirection> {
         }
       }, pageIndex),
       backgroundColor: AppConstant.color_Background,
-      body: CustomBodyContainer(
-        children: <Widget>[
-        CustomText("Find direction", 0, 0, 0, 20, AppConstant.textSize_head),
+      body: CustomBodyContainer(children: <Widget>[
+        CustomText(
+            text: "Find direction", bottom: 20, size: CustomTextSize.head),
         HorizontalLine(),
         Column(
           children: <Widget>[
-            CustomText("Your starting location", 0, 20, 0, 20,
-                AppConstant.textSize_secondHead),
+            CustomText(
+                text: "Your starting location",
+                top: 20,
+                bottom: 20,
+                size: CustomTextSize.secondHead),
             originCol,
             CustomButton(
-              text: "Scan QR",
-              preset: CustomButtonPreset.small,
-              onPressed: scanQR
-            ),
+                text: "Scan QR",
+                preset: CustomButtonPreset.small,
+                onPressed: scanQR),
           ],
         ),
         SizedBox(
@@ -194,50 +209,55 @@ class _FindDirectionState extends State<FindDirection> {
         ),
         Column(
           children: <Widget>[
-            CustomText("To your destination", 0, 18, 0, 20,
-                AppConstant.textSize_secondHead),
+            CustomText(
+                text: "To your destination",
+                top: 18,
+                bottom: 20,
+                size: CustomTextSize.secondHead),
             targetCol,
             CustomButton(
-              text: "Choose location",
-              preset: CustomButtonPreset.small,
-              onPressed:  () {
-              Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ChooseLo()))
-                  .then((value) {
-                setState(() {
-                  targetCol = Column(
-                    children: <Widget>[
-                      Image.asset(
-                        "assets/loc${LocationStorage.target}.jpg",
-                        scale: 20,
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      CustomText(
-                          LocationStorage.locationName[LocationStorage.target],
-                          0, 0, 0, 18,
-                          AppConstant.textSize_body),
-                    ],
-                  );
-                  checkForButton();
-                });
-              });
-            }),
+                text: "Choose location",
+                preset: CustomButtonPreset.small,
+                onPressed: () {
+                  Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => ChooseLo()))
+                      .then((value) {
+                    setState(() {
+                      targetCol = Column(
+                        children: <Widget>[
+                          Image.asset(
+                            "assets/loc${LocationStorage.target}.jpg",
+                            scale: 20,
+                          ),
+                          SizedBox(
+                            height: 15.0,
+                          ),
+                          CustomText(
+                              text: LocationStorage
+                                  .locationName[LocationStorage.target],
+                              bottom: 18,
+                              size: CustomTextSize.body),
+                        ],
+                      );
+                      checkForButton();
+                    });
+                  });
+                }),
           ],
         ),
         SizedBox(height: 10.0),
-
         Visibility(
           visible: buttonReady && locNotSame,
           child: Column(
             children: <Widget>[
               HorizontalLine(),
-              SizedBox(height: 10.0,),
+              SizedBox(
+                height: 10.0,
+              ),
               RaisedButton(
                   child: Text(
                     "Get direction",
-                    style: TextStyle(fontSize: AppConstant.textSize_secondHead),
+                    style: TextStyle(fontSize: CustomTextSize.secondHead),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -247,7 +267,10 @@ class _FindDirectionState extends State<FindDirection> {
                   },
                   color: AppConstant.color_Button,
                   textColor: AppConstant.color_ButtonText,
-                  padding: EdgeInsets.fromLTRB(70.0, 10.0, 70.0, 10.0),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 70.0,
+                    vertical: 10.0,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   )),
@@ -257,10 +280,8 @@ class _FindDirectionState extends State<FindDirection> {
         Visibility(
           visible: buttonReady && !locNotSame,
           child: CustomText(
-            "You are already there!",
-            0, 0, 0, 0, AppConstant.textSize_secondHead),
+              text: "You are already there!", size: CustomTextSize.secondHead),
         ),
-
         SizedBox(height: 30.0),
       ], context: context),
     );

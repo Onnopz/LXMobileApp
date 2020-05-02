@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/data_storage.dart';
+import '../../data/custom_widget.dart';
 
 class AboutLXinfo extends StatefulWidget {
   AboutLXinfo();
@@ -26,8 +27,7 @@ class _AboutLXinfoState extends State<AboutLXinfo> {
         }
       }, pageIndex),
       backgroundColor: AppConstant.color_Background,
-      body: CustomBodyContainer(
-        children: <Widget>[
+      body: CustomBodyContainer(children: <Widget>[
         Image.asset(
           "assets/loc${LocationStorage.aboutLXChosen}.jpg",
           scale: 8,
@@ -36,36 +36,29 @@ class _AboutLXinfoState extends State<AboutLXinfo> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CustomText(
-                LocationStorage.locationName[LocationStorage.aboutLXChosen],
-                0,
-                30,
-                0,
-                30,
-                AppConstant.textSize_secondHead),
+                text:
+                    LocationStorage.locationName[LocationStorage.aboutLXChosen],
+                top: 30,
+                bottom: 30,
+                size: CustomTextSize.secondHead),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Flexible(
-              child:  Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 10,
-                ),
-                CustomText(
-                  "       ${LocationStorage.aboutInfo[LocationStorage.aboutLXChosen]}",
-                  0,
-                  0,
-                  0,
-                  0,
-                  AppConstant.textSize_body
-                ),
-                    
-              ],
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CustomText(
+                      text:
+                          "       ${LocationStorage.aboutInfo[LocationStorage.aboutLXChosen]}",
+                      size: CustomTextSize.body),
+                ],
+              ),
             ),
-            ),
-           
           ],
         ),
         SizedBox(
@@ -85,15 +78,12 @@ class _AboutLXinfoState extends State<AboutLXinfo> {
                     preset: CustomButtonPreset.main,
                     onPressed: () {
                       Navigator.pop(context);
-                  }
-                )
+                    })
               ],
             ),
           ],
         ),
-      ],
-      
-      context: context),
+      ], context: context),
     );
   }
 }

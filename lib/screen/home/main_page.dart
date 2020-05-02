@@ -3,6 +3,7 @@ import '../about_lx/main_page.dart';
 import '../find_direction/main_page.dart';
 import '../map_to_lx/main_page.dart';
 import '../../data/data_storage.dart';
+import '../../data/custom_widget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage();
@@ -30,8 +31,9 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                CustomText("What do you want to do?", 0, 20, 0, 40,
-                    AppConstant.textSize_head),
+                CustomText(
+                  text: "What do you want to do?", top: 20,bottom: 40,
+                  size: CustomTextSize.head),
                 CustomButton(
                   text: "Find direction",
                   preset: CustomButtonPreset.main,
