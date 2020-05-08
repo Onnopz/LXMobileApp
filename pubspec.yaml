@@ -64,6 +64,21 @@ flutter:
     - assets/loc12.jpg
     - assets/loc13.jpg
 
+    - assets/map-loc/maploc0.jpg
+    - assets/map-loc/maploc1.jpg
+    - assets/map-loc/maploc2.jpg
+    - assets/map-loc/maploc3.jpg
+    - assets/map-loc/maploc4.jpg
+    - assets/map-loc/maploc5.jpg
+    - assets/map-loc/maploc6.jpg
+    - assets/map-loc/maploc7.jpg
+    - assets/map-loc/maploc8.jpg
+    - assets/map-loc/maploc9.jpg
+    - assets/map-loc/maploc10.jpg
+    - assets/map-loc/maploc11.jpg
+    - assets/map-loc/maploc12.jpg
+    - assets/map-loc/maploc13.jpg
+
 
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg

@@ -14,12 +14,13 @@ class _ShowDirectionState extends State<ShowDirection> {
   static int currentStep = 0;
   static bool firstORlast = true;
 
+  static int _from = LocationStorage.origin;
+  static int _to = LocationStorage.target;
+
   void reloadPrevNext() {
     setState(() {
       firstORlast = currentStep == 0 ||
-          currentStep + 1 ==
-              LocationStorage.mockUpInst[LocationStorage.origin]
-                  [LocationStorage.target];
+          currentStep == LocationStorage.instruction[_from][_to].length - 1;
     });
   }
 
@@ -39,7 +40,7 @@ class _ShowDirectionState extends State<ShowDirection> {
       backgroundColor: AppConstant.color_Background,
       body: CustomBodyContainer(children: <Widget>[
         Image.asset(
-          "assets/map.png",
+          "assets/map-loc/maploc$currentStep.jpg",
           scale: 1.4,
         ),
         Row(
@@ -48,12 +49,12 @@ class _ShowDirectionState extends State<ShowDirection> {
             Column(
               children: <Widget>[
                 CustomText(
-                  text: "Step ${currentStep + 1} out of ${LocationStorage.mockUpInst[LocationStorage.origin][LocationStorage.target]}",
+                  text: "Step ${currentStep + 1} out of ${LocationStorage.instruction[_from][_to].length}",
                   top: 20.0,
                   bottom: 20.0,
                   size: CustomTextSize.head),
                 CustomText(
-                  text: "Location ${LocationStorage.origin} to ${LocationStorage.target}",
+                  text: LocationStorage.instruction[_from][_to][currentStep],
                   size: CustomTextSize.body),
               ],
             ),
@@ -80,15 +81,13 @@ class _ShowDirectionState extends State<ShowDirection> {
             ),
             if (currentStep > 0 &&
                 currentStep + 1 <
-                    LocationStorage.mockUpInst[LocationStorage.origin]
-                        [LocationStorage.target])
+                    LocationStorage.instruction[_from][_to].length)
               SizedBox(
                 width: 60,
               ),
             Visibility(
               visible: currentStep + 1 <
-                  LocationStorage.mockUpInst[LocationStorage.origin]
-                      [LocationStorage.target],
+                  LocationStorage.instruction[_from][_to].length,
               child: CustomButton(
                 text: "Next",
                 preset: CustomButtonPreset.small,
